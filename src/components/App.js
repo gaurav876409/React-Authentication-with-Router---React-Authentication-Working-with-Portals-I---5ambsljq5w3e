@@ -30,7 +30,7 @@ const App = () => {
             <Register />
           </Route>
           <Route path="/login">
-            <Login setIsLoggedIn={isLoggedIn} />
+            <Login setIsLoggedIn={setIsLoggedIn} />
           </Route>
           <Route path="/store">
             <Store />

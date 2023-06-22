@@ -4,26 +4,25 @@ import { Link, Redirect } from 'react-router-dom';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(false);
-    const [isLogIn, setIsLogIn] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsSubmitted(true);
+    
         const user = localStorage.getItem('user');
         if (!user) {
-          setError(true);
           return;
         }
     
         const { email: storedEmail, password: storedPassword } = JSON.parse(user);
         if (email !== storedEmail || password !== storedPassword) {
-          setError(true);
           return;
         }
     
         setEmail('');
         setPassword('');
-        setError(false);
         setIsLoggedIn(true);
       };
     
@@ -35,7 +34,12 @@ const Login = () => {
         <div className='login'>
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <p className='error-para'>"Email or password is invalid"</p> 
+            {isSubmitted && (email === '' || password === '') && (
+          <p className="error-para">"Email or password isn't entered!"</p>
+        )}
+        {isSubmitted && email !== '' && password !== '' && (
+          <p className="error-para">"Email or password is invalid"</p>
+        )} 
                 <div className='email-div'>
                     <label htmlFor="email">Email: </label>
                     <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>

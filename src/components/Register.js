@@ -4,26 +4,27 @@ import { Link } from 'react-router-dom';
 function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsSubmitted(true);
         if(email.trim() === '' || password.trim() === ''){
-            setError(true);
             return;
         }
 
         localStorage.setItem('user', JSON.stringify({email, password}));
         setEmail('');
         setPassword('');
-        setError(false);
     }
 
     return (
         <div className='register'>
             <h2>Register</h2>
             <form className='sign-up-form' onSubmit={handleSubmit}>
-                <p className='error-para'>"Email or password isn't entered!"</p>
+            {isSubmitted && (email.trim() === '' || password.trim() === '') && (
+          <p className="error-para">"Email or password isn't entered!"</p>
+        )}
                 <div className='email-div'>
                     <label htmlFor="email">Email: </label>
                     <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
