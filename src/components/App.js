@@ -14,25 +14,25 @@ const App = () => {
         <nav>
           <ul>
             <li>
-              <Link>Register</Link>
+              <Link to="/">Register</Link>
             </li>
             <li>
-              <Link>Login</Link>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-                <Link>Store</Link>
+                <Link to="/store">Store</Link>
             </li>
           </ul>
         </nav>
 
         <Switch>
-          <Route>
+          <Route exact path="/">
             <Register />
           </Route>
-          <Route>
-            <Login  />
+          <Route path="/login">
+            <Login setIsLoggedIn={isLoggedIn} />
           </Route>
-          <Route>
+          <Route path="/store">
             <Store />
           </Route>
         </Switch>
