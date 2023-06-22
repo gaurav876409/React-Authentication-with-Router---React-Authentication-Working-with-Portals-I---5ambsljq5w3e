@@ -19,9 +19,11 @@ const App = () => {
             <li>
               <Link to="/login">Login</Link>
             </li>
-            <li>
+            {isLoggedIn && (
+              <li>
                 <Link to="/store">Store</Link>
-            </li>
+              </li>
+            )}
           </ul>
         </nav>
 
