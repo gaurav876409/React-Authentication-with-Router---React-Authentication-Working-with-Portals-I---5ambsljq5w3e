@@ -34,8 +34,11 @@ const App = () => {
           <Route path="/login">
             <Login setIsLoggedIn={setIsLoggedIn} />
           </Route>
-          <Route path="/store">
+          {/* <Route path="/store">
             <Store />
+          </Route> */}
+          <Route path="/store">
+            {isLoggedIn ? <Store setIsLoggedIn={setIsLoggedIn} /> : <Login setIsLoggedIn={setIsLoggedIn} />}
           </Route>
         </Switch>
       </BrowserRouter>
