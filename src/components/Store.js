@@ -22,7 +22,7 @@ const Store = ({ setIsLoggedIn }) => {
 
   return (
     <div className="store">
-      <h1>Welcome to the Store</h1>
+      <h2>Welcome to the Store</h2>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
